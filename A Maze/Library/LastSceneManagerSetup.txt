@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/UdacityVR/Scenes/A Maze.unity
-  isLoaded: 1
-  isActive: 1
