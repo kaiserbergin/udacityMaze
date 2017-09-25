@@ -55,3 +55,5 @@ MonoBehaviour:
   sizeZ: 0
   cellPrefab: {fileID: 114763318830891630, guid: ca0ceb0bc8df3f143b6a556f715e52f5,
     type: 2}
+  cellWallPrefab: {fileID: 114683615298434266, guid: 7445b411621b9ff42a2a84903ab5c1ff,
+    type: 2}

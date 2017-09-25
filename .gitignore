@@ -4,7 +4,7 @@
 # ignore visual studio ide files
 *.csproj
 *.sln
-/.vs
+**/.vs
 
 # ignore unnecessary directories
 **/Temp
