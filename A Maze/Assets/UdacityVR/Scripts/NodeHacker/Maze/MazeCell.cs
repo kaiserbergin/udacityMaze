@@ -5,6 +5,7 @@ using System;
 
 public class MazeCell : MonoBehaviour {
     private Guid id;
+    public CoOrds coOrds;
     public MazeCell()
     {
         id = Guid.NewGuid();

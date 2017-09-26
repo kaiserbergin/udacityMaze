@@ -12,7 +12,7 @@ public class MazeGenerator : MonoBehaviour {
     private MazeCell[,] cells;
 
     public MazeCellWall cellWallPrefab;
-    private MazeCellWall[,] cellWalls;
+    private List<MazeCellWall> cellWalls;
 
     private float scaleX;
     private float scaleZ;
@@ -21,11 +21,6 @@ public class MazeGenerator : MonoBehaviour {
     private List<MazeCellSet> cellSets;
     private List<MazeCellConnections> cellConnections;
     private List<CoOrds> unvisitedCellCoOrds;
-
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(0.2f);
-    }
 
     private void Awake()
     {
@@ -37,9 +32,9 @@ public class MazeGenerator : MonoBehaviour {
         unvisitedCellCoOrds = new List<CoOrds>();
 
         cellSets = new List<MazeCellSet>();
-        cellConnections = new List<MazeCellConnections>();        
+        cellConnections = new List<MazeCellConnections>();
 
-        cellWalls = new MazeCellWall[sizeX + 1, sizeZ + 1];
+        cellWalls = new List<MazeCellWall>();
     }
 
     // Use this for initialization
@@ -52,7 +47,6 @@ public class MazeGenerator : MonoBehaviour {
                 cells[x, z] = newCell;               
                 cellSets.Add(new MazeCellSet());
                 cellSets[cellSets.Count - 1].cells.Add(cells[x, z]);
-                unvisitedCellCoOrds.Add(new CoOrds(x, z));
             }
         }
         for(int x = 0; x < sizeX + 1; x++)
@@ -61,21 +55,26 @@ public class MazeGenerator : MonoBehaviour {
             {
                 if (x < sizeX)
                 {
-                    MazeCellWall newCellWall = CreateHorizontalCellWall(x, z);
+                    MazeCellWall horizontalWall = CreateHorizontalCellWall(x, z);
+                    cellWalls.Add(horizontalWall);
                 }
                 if (z < sizeZ)
                 {
-                    MazeCellWall mazeCellWall = CreateVerticalCellWall(x, z);
+                    MazeCellWall verticalCellWall = CreateVerticalCellWall(x, z);
+                    cellWalls.Add(verticalCellWall);
                 }
                 
             }
         }
-	}    
+        CombineCellSets();
+
+    }    
 	
 	public MazeCell CreateCell (int x, int z)
     {
-        MazeCell newCell = Instantiate(cellPrefab) as MazeCell;        
+        MazeCell newCell = Instantiate(cellPrefab) as MazeCell;
         newCell.name = "MazeCell(" + x + ", " + z + ")";
+        newCell.coOrds = new CoOrds(x, z);
         newCell.transform.parent = transform;
         newCell.transform.localPosition = new Vector3(
             x * scaleX,
@@ -87,6 +86,7 @@ public class MazeGenerator : MonoBehaviour {
     public MazeCellWall CreateHorizontalCellWall(int x, int z)
     {
         MazeCellWall newCellWall = Instantiate(cellWallPrefab) as MazeCellWall;
+        newCellWall.mazeCellWallCoOrds = new MazeCellWallCoOrd(x, z, 0);
         newCellWall.name = "HorizontalCellWall(" + x + ", " + z + ")";
         newCellWall.transform.parent = transform;
         newCellWall.transform.localPosition = new Vector3(
@@ -99,6 +99,7 @@ public class MazeGenerator : MonoBehaviour {
     public MazeCellWall CreateVerticalCellWall(int x, int z)
     {
         MazeCellWall newCellWall = Instantiate(cellWallPrefab) as MazeCellWall;
+        newCellWall.mazeCellWallCoOrds = new MazeCellWallCoOrd(x, z, 90f);
         newCellWall.name = "VerticalCellWall(" + x + ", " + z + ")";
         newCellWall.transform.parent = transform;
         newCellWall.transform.localPosition = new Vector3(
@@ -111,37 +112,74 @@ public class MazeGenerator : MonoBehaviour {
 
     public void CombineCellSets()
     {
-        while(unvisitedCellCoOrds.Count > 0)
+        List<MazeCellWall> unvisitedWalls = new List<MazeCellWall>();
+        unvisitedWalls.AddRange(cellWalls);
+        while(unvisitedWalls.Count > 0)
         {
-            StartCoroutine(Delay());
-            int cellIndex = UnityEngine.Random.Range(0, unvisitedCellCoOrds.Count);
-            CoOrds cellCoOrds = unvisitedCellCoOrds[cellIndex];
-            MazeCell visitedCell = cells[cellCoOrds.x, cellCoOrds.z];
-            List<MazeCell> adjacentCells = new List<MazeCell>();
-            bool setsMerged = false;
+            int unvisitedWallIndex = UnityEngine.Random.Range(0, unvisitedWalls.Count);
+            int x, z;
+            float wallRotation;
+            x = unvisitedWalls[unvisitedWallIndex].mazeCellWallCoOrds.x;
+            z = unvisitedWalls[unvisitedWallIndex].mazeCellWallCoOrds.z;
+            wallRotation = unvisitedWalls[unvisitedWallIndex].mazeCellWallCoOrds.rotation;
 
-            if(cellCoOrds.x > 0)
+            //Horizontal Walls
+            if (wallRotation == 0 && z != 0 && z != sizeZ)
             {
-                adjacentCells.Add(cells[cellCoOrds.x - 1, cellCoOrds.z]);
+                MazeCellSet firstSet = null;
+                MazeCellSet secondSet = null;
+                foreach(var set in cellSets)
+                {
+                    foreach(var cell in set.cells)
+                    {
+                        if(cell.coOrds.x == x && cell.coOrds.z == z)
+                        {
+                            firstSet = set;
+                        }
+                        else if (cell.coOrds.x == x && cell.coOrds.z == z - 1)
+                        {
+                            secondSet = set;
+                        }
+                        if (firstSet != null && secondSet != null) break;
+                    }
+                }
+                if (firstSet.GetId() != secondSet.GetId())
+                {
+                    firstSet.cells.AddRange(secondSet.cells);
+                    cellSets.Remove(secondSet);
+                    MazeCellWall wallToDestroy = cellWalls.Find(wall => wall.mazeCellWallCoOrds.x == x && wall.mazeCellWallCoOrds.z == z && wall.mazeCellWallCoOrds.rotation == wallRotation);
+                    Destroy(wallToDestroy.gameObject);
+                }
             }
-            if (cellCoOrds.x < sizeX - 1)
+            //Vertical Walls
+            if (wallRotation == 90f && x != 0 && x != sizeX)
             {
-                adjacentCells.Add(cells[cellCoOrds.x + 1, cellCoOrds.z]);
+                MazeCellSet firstSet = null;
+                MazeCellSet secondSet = null;
+                foreach (var set in cellSets)
+                {
+                    foreach (var cell in set.cells)
+                    {
+                        if (cell.coOrds.x == x && cell.coOrds.z == z)
+                        {
+                            firstSet = set;
+                        }
+                        else if (cell.coOrds.x == x - 1 && cell.coOrds.z == z)
+                        {
+                            secondSet = set;
+                        }
+                        if (firstSet != null && secondSet != null) break;
+                    }
+                }
+                if (firstSet.GetId() != secondSet.GetId())
+                {
+                    firstSet.cells.AddRange(secondSet.cells);
+                    cellSets.Remove(secondSet);
+                    MazeCellWall wallToDestroy = cellWalls.Find(wall => wall.mazeCellWallCoOrds.x == x && wall.mazeCellWallCoOrds.z == z && wall.mazeCellWallCoOrds.rotation == wallRotation);
+                    Destroy(wallToDestroy.gameObject);
+                }
             }
-            if (cellCoOrds.z > 0)
-            {
-                adjacentCells.Add(cells[cellCoOrds.x, cellCoOrds.z - 1]);
-            }
-            if (cellCoOrds.z < sizeZ - 1)
-            {
-                adjacentCells.Add(cells[cellCoOrds.x, cellCoOrds.z + 1]);
-            }
-
-            while(!setsMerged && adjacentCells.Count > 0)
-            {
-                int adjacentCellIndex = UnityEngine.Random.Range(0, adjacentCells.Count);
-
-            }
-        }        
+            unvisitedWalls.RemoveAt(unvisitedWallIndex);
+        }
     }
 }
