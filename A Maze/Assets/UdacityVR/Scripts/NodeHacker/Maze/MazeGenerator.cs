@@ -19,8 +19,8 @@ public class MazeGenerator : MonoBehaviour {
     private float scaleY;
 
     private List<MazeCellSet> cellSets;
-    private List<MazeCellConnections> cellConnections;
-    private List<CoOrds> unvisitedCellCoOrds;
+
+    public Waypoint wayPoint;
 
     private void Awake()
     {
@@ -29,10 +29,8 @@ public class MazeGenerator : MonoBehaviour {
         scaleY = cellWallPrefab.transform.localScale.y;
 
         cells = new MazeCell[sizeX, sizeZ];
-        unvisitedCellCoOrds = new List<CoOrds>();
 
         cellSets = new List<MazeCellSet>();
-        cellConnections = new List<MazeCellConnections>();
 
         cellWalls = new List<MazeCellWall>();
     }
@@ -47,6 +45,8 @@ public class MazeGenerator : MonoBehaviour {
                 cells[x, z] = newCell;               
                 cellSets.Add(new MazeCellSet());
                 cellSets[cellSets.Count - 1].cells.Add(cells[x, z]);
+
+                CreateWayPoint(x, z);
             }
         }
         for(int x = 0; x < sizeX + 1; x++)
@@ -81,6 +81,18 @@ public class MazeGenerator : MonoBehaviour {
             0,
             z * scaleZ);
         return newCell;
+    }
+
+    public void CreateWayPoint(int x, int z)
+    {
+        //I don't like these waypoints...
+        //Waypoint waypoint = Instantiate(wayPoint) as Waypoint;
+        //waypoint.name = "WayPoint(" + x + ", " + z + ")";
+        //waypoint.transform.parent = transform;
+        //waypoint.transform.localPosition = new Vector3(
+        //    x * scaleX,
+        //    1,
+        //    z * scaleZ);
     }
 
     public MazeCellWall CreateHorizontalCellWall(int x, int z)
