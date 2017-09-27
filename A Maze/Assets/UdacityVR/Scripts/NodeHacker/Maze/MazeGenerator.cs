@@ -86,13 +86,13 @@ public class MazeGenerator : MonoBehaviour {
     public void CreateWayPoint(int x, int z)
     {
         //I don't like these waypoints...
-        //Waypoint waypoint = Instantiate(wayPoint) as Waypoint;
-        //waypoint.name = "WayPoint(" + x + ", " + z + ")";
-        //waypoint.transform.parent = transform;
-        //waypoint.transform.localPosition = new Vector3(
-        //    x * scaleX,
-        //    1,
-        //    z * scaleZ);
+        Waypoint waypoint = Instantiate(wayPoint) as Waypoint;
+        waypoint.name = "WayPoint(" + x + ", " + z + ")";
+        waypoint.transform.parent = transform;
+        waypoint.transform.localPosition = new Vector3(
+            x * scaleX,
+            scaleY / 2,
+            z * scaleZ);
     }
 
     public MazeCellWall CreateHorizontalCellWall(int x, int z)

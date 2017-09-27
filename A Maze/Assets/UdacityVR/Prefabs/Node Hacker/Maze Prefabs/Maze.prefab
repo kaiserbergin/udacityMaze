@@ -25,7 +25,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4379306666584578
 Transform:
@@ -57,3 +57,4 @@ MonoBehaviour:
     type: 2}
   cellWallPrefab: {fileID: 114683615298434266, guid: 7445b411621b9ff42a2a84903ab5c1ff,
     type: 2}
+  wayPoint: {fileID: 0}
