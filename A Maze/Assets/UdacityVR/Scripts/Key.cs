@@ -5,6 +5,8 @@ using UnityEngine;
 public class Key : MonoBehaviour 
 {
     //Create a reference to the KeyPoofPrefab and Door
+    public GameObject CollectKeyEffect;
+    public GameObject Door;
 
 	void Update()
 	{

@@ -18,9 +18,12 @@ public class MazeGenerator : MonoBehaviour {
     private float scaleZ;
     private float scaleY;
 
-    private List<MazeCellSet> cellSets;
+    private List<MazeCellSet> cellSets;    
 
-    public Waypoint wayPoint;
+    public WaypointNode wayPoint;
+
+    private int[] keyPosition;
+    private int[] doorPosition;
 
     private void Awake()
     {
@@ -67,8 +70,8 @@ public class MazeGenerator : MonoBehaviour {
             }
         }
         CombineCellSets();
-
-    }    
+        //CombineMazeMeshes();
+    }      
 	
 	public MazeCell CreateCell (int x, int z)
     {
@@ -85,8 +88,7 @@ public class MazeGenerator : MonoBehaviour {
 
     public void CreateWayPoint(int x, int z)
     {
-        //I don't like these waypoints...
-        Waypoint waypoint = Instantiate(wayPoint) as Waypoint;
+        WaypointNode waypoint = Instantiate(wayPoint) as WaypointNode;
         waypoint.name = "WayPoint(" + x + ", " + z + ")";
         waypoint.transform.parent = transform;
         waypoint.transform.localPosition = new Vector3(
@@ -161,6 +163,7 @@ public class MazeGenerator : MonoBehaviour {
                     cellSets.Remove(secondSet);
                     MazeCellWall wallToDestroy = cellWalls.Find(wall => wall.mazeCellWallCoOrds.x == x && wall.mazeCellWallCoOrds.z == z && wall.mazeCellWallCoOrds.rotation == wallRotation);
                     Destroy(wallToDestroy.gameObject);
+                    cellWalls.Remove(wallToDestroy);
                 }
             }
             //Vertical Walls
@@ -189,6 +192,7 @@ public class MazeGenerator : MonoBehaviour {
                     cellSets.Remove(secondSet);
                     MazeCellWall wallToDestroy = cellWalls.Find(wall => wall.mazeCellWallCoOrds.x == x && wall.mazeCellWallCoOrds.z == z && wall.mazeCellWallCoOrds.rotation == wallRotation);
                     Destroy(wallToDestroy.gameObject);
+                    cellWalls.Remove(wallToDestroy);
                 }
             }
             unvisitedWalls.RemoveAt(unvisitedWallIndex);

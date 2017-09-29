@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4379306666584578}
   - component: {fileID: 114502135694198420}
+  - component: {fileID: 33761944838509114}
+  - component: {fileID: 23239220094283496}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -40,6 +42,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23239220094283496
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1880631370778478}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 86c4bee0aff72294fa45e87ea2d4bc91, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33761944838509114
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1880631370778478}
+  m_Mesh: {fileID: 0}
 --- !u!114 &114502135694198420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,4 +98,4 @@ MonoBehaviour:
     type: 2}
   cellWallPrefab: {fileID: 114683615298434266, guid: 7445b411621b9ff42a2a84903ab5c1ff,
     type: 2}
-  wayPoint: {fileID: 0}
+  wayPoint: {fileID: 114532453675565742, guid: 248f63d120db74344b486fdf9a6fd49a, type: 2}
