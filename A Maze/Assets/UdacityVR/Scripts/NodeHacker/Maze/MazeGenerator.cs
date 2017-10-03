@@ -22,9 +22,6 @@ public class MazeGenerator : MonoBehaviour {
 
     public WaypointNode wayPoint;
 
-    private int[] keyPosition;
-    private int[] doorPosition;
-
     private void Awake()
     {
         scaleX = cellPrefab.transform.localScale.x;
