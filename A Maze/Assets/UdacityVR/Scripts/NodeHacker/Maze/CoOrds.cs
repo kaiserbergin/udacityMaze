@@ -6,10 +6,10 @@ using System.Text;
 public struct CoOrds
 {
     public int x, z;
-    public CoOrds(int p1, int p2)
+    public CoOrds(int x, int z)
     {
-        x = p1;
-        z = p2;
+        this.x = x;
+        this.z = z;
     }
     
 }

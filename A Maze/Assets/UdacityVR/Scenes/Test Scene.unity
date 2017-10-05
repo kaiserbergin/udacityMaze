@@ -587,9 +587,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundCount: 4
-  startDelay: 2
+  startDelay: 0
   blinkDelay: 1
-  puzzleTimeLimit: 2
+  puzzleTimeLimit: 10
 --- !u!4 &815520892
 Transform:
   m_ObjectHideFlags: 0
