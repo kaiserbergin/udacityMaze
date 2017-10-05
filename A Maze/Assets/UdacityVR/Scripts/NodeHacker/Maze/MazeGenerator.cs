@@ -23,6 +23,9 @@ public class MazeGenerator : MonoBehaviour {
     private List<CoOrds> itemCells;
 
     public WaypointNode wayPoint;
+    public Key keyPrefab;
+    public Door doorPrefab;
+    public Coin coinPrefab;
 
     public float idealRoomRatio;
 
@@ -318,6 +321,36 @@ public class MazeGenerator : MonoBehaviour {
                     if(xPos == initialCoOrds.x + 1 && zPos == initialCoOrds.z + 1)
                     {
                         itemCells.Add(new CoOrds(xPos, zPos));
+                        if(i == 0)
+                        {
+                            Door door = Instantiate(doorPrefab) as Door;
+                            door.name = "Key(" + xPos + ", " + zPos + ")";
+                            door.transform.parent = transform;
+                            door.transform.localPosition = new Vector3(
+                                xPos * scaleX,
+                                scaleY / 2,
+                                zPos * scaleZ);
+                        }
+                        else if(i == 1)
+                        {
+                            Key key = Instantiate(keyPrefab) as Key;
+                            key.name = "Key(" + xPos + ", " + zPos + ")";
+                            key.transform.parent = transform;
+                            key.transform.localPosition = new Vector3(
+                                xPos * scaleX,
+                                scaleY / 2,
+                                zPos * scaleZ);
+                        }
+                        else
+                        {
+                            Coin coin = Instantiate(coinPrefab) as Coin;
+                            coin.name = "Key(" + xPos + ", " + zPos + ")";
+                            coin.transform.parent = transform;
+                            coin.transform.localPosition = new Vector3(
+                                xPos * scaleX,
+                                scaleY / 2,
+                                zPos * scaleZ);
+                        }
                     }
                 }
             }
