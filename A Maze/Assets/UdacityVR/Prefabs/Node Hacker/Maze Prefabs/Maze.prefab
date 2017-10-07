@@ -99,10 +99,10 @@ MonoBehaviour:
   cellWallPrefab: {fileID: 114683615298434266, guid: 7445b411621b9ff42a2a84903ab5c1ff,
     type: 2}
   wayPoint: {fileID: 114532453675565742, guid: 248f63d120db74344b486fdf9a6fd49a, type: 2}
-  keyPrefab: {fileID: 114841200866888688, guid: 111654ac6051e4d0aa5c3b534c180677,
+  keyPrefab: {fileID: 114353745370335874, guid: 7c46bb797442c864cb446282270e6bd6,
     type: 2}
-  doorPrefab: {fileID: 114728757229156166, guid: f9822e67385a4402d9bf680e50d19d58,
+  decryptionFragmentPrefab: {fileID: 114200073705004724, guid: acd17608e62aaf94382978d79e23bc24,
     type: 2}
-  coinPrefab: {fileID: 114806526123376102, guid: 02dc7d66da318204f8bb21b011ecd0b9,
+  escapeDoorPrefab: {fileID: 114665292499852114, guid: 4bdef779e3a94e648892c9afb3f6b16e,
     type: 2}
   idealRoomRatio: 0

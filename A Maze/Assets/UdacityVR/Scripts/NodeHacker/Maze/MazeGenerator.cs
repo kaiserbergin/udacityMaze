@@ -23,9 +23,9 @@ public class MazeGenerator : MonoBehaviour {
     private List<CoOrds> itemCells;
 
     public WaypointNode wayPoint;
-    public Key keyPrefab;
-    public Door doorPrefab;
-    public Coin coinPrefab;
+    public EncryptedKey keyPrefab;
+    public DecryptionFragment decryptionFragmentPrefab;
+    public EscapeDoor escapeDoorPrefab;
 
     public float idealRoomRatio;
 
@@ -323,17 +323,17 @@ public class MazeGenerator : MonoBehaviour {
                         itemCells.Add(new CoOrds(xPos, zPos));
                         if(i == 0)
                         {
-                            Door door = Instantiate(doorPrefab) as Door;
-                            door.name = "Key(" + xPos + ", " + zPos + ")";
-                            door.transform.parent = transform;
-                            door.transform.localPosition = new Vector3(
+                            EscapeDoor escapeDoor = Instantiate(escapeDoorPrefab) as EscapeDoor;
+                            escapeDoor.name = "Escape Door(" + xPos + ", " + zPos + ")";
+                            escapeDoor.transform.parent = transform;
+                            escapeDoor.transform.localPosition = new Vector3(
                                 xPos * scaleX,
                                 scaleY / 2,
                                 zPos * scaleZ);
                         }
                         else if(i == 1)
                         {
-                            Key key = Instantiate(keyPrefab) as Key;
+                            EncryptedKey key = Instantiate(keyPrefab) as EncryptedKey;
                             key.name = "Key(" + xPos + ", " + zPos + ")";
                             key.transform.parent = transform;
                             key.transform.localPosition = new Vector3(
@@ -343,13 +343,14 @@ public class MazeGenerator : MonoBehaviour {
                         }
                         else
                         {
-                            Coin coin = Instantiate(coinPrefab) as Coin;
-                            coin.name = "Key(" + xPos + ", " + zPos + ")";
-                            coin.transform.parent = transform;
-                            coin.transform.localPosition = new Vector3(
+                            DecryptionFragment decryptionFragment = Instantiate(decryptionFragmentPrefab) as DecryptionFragment;
+                            decryptionFragment.name = "Decryption Fragment(" + xPos + ", " + zPos + ")";
+                            decryptionFragment.transform.parent = transform;
+                            decryptionFragment.transform.localPosition = new Vector3(
                                 xPos * scaleX,
                                 scaleY / 2,
                                 zPos * scaleZ);
+                            GameManager.instance.decryptionFragmentsRequired++;
                         }
                     }
                 }

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour 
+public class Key : Item 
 {
     //Create a reference to the KeyPoofPrefab and Door
     public GameObject CollectKeyEffect;
     public GameObject Door;
+
+    public bool IsDecrypted;
 
 	void Update()
 	{
@@ -15,6 +17,7 @@ public class Key : MonoBehaviour
 
 	public void OnKeyClicked()
 	{
+        GameManager.instance.inventory.AddItem(this);
         // Instatiate the KeyPoof Prefab where this key is located
         // Make sure the poof animates vertically
         // Call the Unlock() method on the Door
