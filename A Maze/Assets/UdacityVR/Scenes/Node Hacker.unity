@@ -150,12 +150,12 @@ Prefab:
     - target: {fileID: 114502135694198420, guid: e28bbefb50725764d94f52b669a2e3f0,
         type: 2}
       propertyPath: sizeX
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114502135694198420, guid: e28bbefb50725764d94f52b669a2e3f0,
         type: 2}
       propertyPath: sizeZ
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114502135694198420, guid: e28bbefb50725764d94f52b669a2e3f0,
         type: 2}

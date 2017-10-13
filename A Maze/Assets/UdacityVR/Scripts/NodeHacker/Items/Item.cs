@@ -4,7 +4,8 @@ public class Item : MonoBehaviour {
     public enum ItemTypes {
         EscapeKey,
         DecryptionFragment,
-        HealtPack
+        HealtPack,
+        BitCoin
     }
     private Guid ID;
     public string Name;
