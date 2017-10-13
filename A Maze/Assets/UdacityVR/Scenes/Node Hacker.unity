@@ -160,7 +160,7 @@ Prefab:
     - target: {fileID: 114502135694198420, guid: e28bbefb50725764d94f52b669a2e3f0,
         type: 2}
       propertyPath: idealRoomRatio
-      value: 0.2
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e28bbefb50725764d94f52b669a2e3f0, type: 2}

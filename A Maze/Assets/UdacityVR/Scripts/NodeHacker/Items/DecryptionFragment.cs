@@ -11,9 +11,9 @@ public class DecryptionFragment : Item {
     }
 
     public void OnClick() {
-        GameManager.instance.inventory.AddItem(this);
-        Instantiate(CollectDecryptionEffect);
+        GameManager.instance.inventory.AddItem(this);        
         CollectDecryptionEffect.transform.position = gameObject.transform.position;
+        Instantiate(CollectDecryptionEffect);
         gameObject.SetActive(false);
     }
 

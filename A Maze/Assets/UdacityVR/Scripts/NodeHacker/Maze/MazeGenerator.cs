@@ -328,7 +328,7 @@ public class MazeGenerator : MonoBehaviour {
                             escapeDoor.transform.parent = transform;
                             escapeDoor.transform.localPosition = new Vector3(
                                 xPos * scaleX,
-                                scaleY / 2,
+                                0,
                                 zPos * scaleZ);
                         }
                         else if(i == 1)

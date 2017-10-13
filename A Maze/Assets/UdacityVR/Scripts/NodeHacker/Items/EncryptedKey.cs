@@ -15,8 +15,8 @@ public class EncryptedKey : Item {
 
     public void OnKeyClicked() {
         GameManager.instance.inventory.AddItem(this);
-        Instantiate(CollectKeyEffect);
         CollectKeyEffect.transform.position = gameObject.transform.position;
+        Instantiate(CollectKeyEffect);
         gameObject.SetActive(false);
     }
 
