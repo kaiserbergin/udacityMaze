@@ -12,6 +12,8 @@ public class Inventory
             Items.Add(newItem);
             if(newItem.ItemType == Item.ItemTypes.DecryptionFragment || newItem.ItemType == Item.ItemTypes.EscapeKey) {
                 OnDecryptionFragmentOrEncryptedKeyCollected(newItem.ItemType);
+            } else if(newItem.ItemType == Item.ItemTypes.BitCoin) {
+                OnBitCoinCollected();
             }
         }
     }
@@ -41,7 +43,7 @@ public class Inventory
         if(itemType == Item.ItemTypes.EscapeKey) {
             isEscapeKeyCollected = true;
         }
-        if(decryptedKeyCount == GameManager.instance.decryptionFragmentsRequired && isEscapeKeyCollected) {
+        if(decryptedKeyCount >= GameManager.instance.decryptionFragmentsRequired && isEscapeKeyCollected) {
             EncryptedKey key = (EncryptedKey)Items.Find(item => item.ItemType == Item.ItemTypes.EscapeKey);
             key.IsDecrypted = true;
         }
@@ -53,5 +55,11 @@ public class Inventory
             return key.IsDecrypted;
         }
         return false;
+    }
+
+    public void OnBitCoinCollected() {
+        if (Items.FindAll(item => item.ItemType == Item.ItemTypes.BitCoin).Count % GameManager.instance.coinsRequiredForHealthBonus == 0) {
+            GameManager.instance.MazePlayer.AddHealthPoints(1);
+        }
     }
 }

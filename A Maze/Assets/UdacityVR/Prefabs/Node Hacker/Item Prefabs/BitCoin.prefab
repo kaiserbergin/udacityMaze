@@ -38,6 +38,8 @@ GameObject:
   - component: {fileID: 4108102875497634}
   - component: {fileID: 33088622238958818}
   - component: {fileID: 23922676344708904}
+  - component: {fileID: 64280744003801028}
+  - component: {fileID: 114917963887691956}
   m_Layer: 0
   m_Name: BitCoin
   m_TagString: Untagged
@@ -65,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1517249048377378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.24, y: 0.63, z: 3.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4108102875497634}
@@ -79,11 +81,11 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1970275368656698}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: d42be0b4169bc6f48b1c6ccb797be6d8, type: 2}
   m_StaticBatchInfo:
@@ -111,6 +113,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1970275368656698}
   m_Mesh: {fileID: 4300022, guid: 8262c07f707ae224ea79a82d92a83bd9, type: 3}
+--- !u!64 &64280744003801028
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970275368656698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300022, guid: 8262c07f707ae224ea79a82d92a83bd9, type: 3}
 --- !u!114 &114797388710723426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,8 +141,40 @@ MonoBehaviour:
   Name: Bit Coin
   ItemType: 3
   ItemIcon: {fileID: 0}
-  CollectCoinEffect: {fileID: 0}
-  CoinCollider: {fileID: 0}
+  CollectCoinEffect: {fileID: 1000012050171414, guid: 251f98f5c04e5b346b37c68d537e30c6,
+    type: 2}
+  CoinCollider: {fileID: 1970275368656698}
+  spinSpeedMultiplier: 70
+--- !u!114 &114917963887691956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970275368656698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114797388710723426}
+          m_MethodName: CollectCoin
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!136 &136463346428436814
 CapsuleCollider:
   m_ObjectHideFlags: 1

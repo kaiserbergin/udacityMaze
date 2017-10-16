@@ -147,21 +147,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114502135694198420, guid: e28bbefb50725764d94f52b669a2e3f0,
-        type: 2}
-      propertyPath: sizeX
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 114502135694198420, guid: e28bbefb50725764d94f52b669a2e3f0,
-        type: 2}
-      propertyPath: sizeZ
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 114502135694198420, guid: e28bbefb50725764d94f52b669a2e3f0,
-        type: 2}
-      propertyPath: idealRoomRatio
-      value: 0.25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e28bbefb50725764d94f52b669a2e3f0, type: 2}
   m_IsPrefabParent: 0
@@ -311,11 +296,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114716053108028364, guid: a70018b9086dc6c4eb6abfc100b2bf44,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 406712264b67fd94b82c562a4372aeda, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a70018b9086dc6c4eb6abfc100b2bf44, type: 2}
   m_IsPrefabParent: 0

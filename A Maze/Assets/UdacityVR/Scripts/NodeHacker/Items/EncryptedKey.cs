@@ -6,11 +6,12 @@ public class EncryptedKey : Item {
     //Create a reference to the KeyPoofPrefab and Door
     public GameObject CollectKeyEffect;
     public GameObject Door;
+    public float spinSpeedMultiplier = 10f;
 
     public bool IsDecrypted;
 
     void Update() {
-        //Not required, but for fun why not try adding a Key Floating Animation here :)
+        transform.Rotate(Vector3.up, spinSpeedMultiplier * Time.deltaTime);
     }
 
     public void OnKeyClicked() {

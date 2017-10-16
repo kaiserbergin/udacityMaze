@@ -26,6 +26,6 @@ public class EscapeDoor : MonoBehaviour {
     }
 
     public void Unlock() {
-        // You'll need to set "locked" to false here
+        
     }
 }

@@ -51,5 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58790b332756fb42ad00e6577f680ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 114521200316204048, guid: 33b03ea135168ed40ac096bc03bf5b64,
-    type: 2}
+  mazeGenerator: {fileID: 0}
+  decryptionFragmentsRequired: 0
+  coinsRequiredForHealthBonus: 5
+  escapeDoor: {fileID: 0}
+  MazeDifficulty: 25

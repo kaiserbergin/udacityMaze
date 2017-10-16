@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37a7231c0b513d44a147e1f2453beaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 0
-  sizeZ: 0
+  sizeX: 13
+  sizeZ: 13
   cellPrefab: {fileID: 114763318830891630, guid: ca0ceb0bc8df3f143b6a556f715e52f5,
     type: 2}
   cellWallPrefab: {fileID: 114683615298434266, guid: 7445b411621b9ff42a2a84903ab5c1ff,
@@ -105,4 +105,8 @@ MonoBehaviour:
     type: 2}
   escapeDoorPrefab: {fileID: 114665292499852114, guid: 4bdef779e3a94e648892c9afb3f6b16e,
     type: 2}
-  idealRoomRatio: 0
+  bitCoinPrefab: {fileID: 114797388710723426, guid: 32e99d5f7e6b8874f840928f18289024,
+    type: 2}
+  idealRoomRatio: 0.25
+  coinSpawnRate: 0
+  coinYOffset: 0

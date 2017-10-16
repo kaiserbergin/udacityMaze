@@ -26,11 +26,17 @@ public class MazeGenerator : MonoBehaviour {
     public EncryptedKey keyPrefab;
     public DecryptionFragment decryptionFragmentPrefab;
     public EscapeDoor escapeDoorPrefab;
+    public BitCoin bitCoinPrefab;
 
     public float idealRoomRatio;
+    public float coinSpawnRate;
+    public float coinYOffset;
 
-    private void Awake()
-    {
+    private int coinSpawns;
+
+    
+
+    public void InitializeMaze() {
         scaleX = cellPrefab.transform.localScale.x;
         scaleZ = cellPrefab.transform.localScale.z;
         scaleY = cellWallPrefab.transform.localScale.y;
@@ -44,10 +50,16 @@ public class MazeGenerator : MonoBehaviour {
         itemCells = new List<CoOrds>();
 
         unvisitedWalls = new List<MazeCellWall>();
+
+        coinSpawns = (int)(sizeX * sizeZ * coinSpawnRate);
+
+        if (coinSpawns < 5) {
+            coinSpawns = 5;
+        }
     }
 
     // Use this for initialization
-    void Start () {    
+    public void GenerateMaze() {    
         //Create cells
 		for(int x = 0; x < sizeX; x++)
         {
@@ -80,17 +92,48 @@ public class MazeGenerator : MonoBehaviour {
         unvisitedWalls.AddRange(cellWalls);
         CreateRooms();
         CombineCellSets();
-        for (int x = 0; x < sizeX; x++)
-        {
-            for (int z = 0; z < sizeZ; z++)
-            {
-                if(itemCells.FindIndex(cell => cell.x == x && cell.z == z) == -1)
-                {
+        CreateWayPoints();
+        SpawnCoins();
+    }   
+    
+    public void SpawnCoins() {
+        Debug.Log("Spaining coins with coin count of: " + coinSpawns);
+        List<MazeCell> eligibleCells = new List<MazeCell>();
+        for (int x = 0; x < sizeX; x++) {
+            for (int z = 0; z < sizeZ; z++) {
+                if (itemCells.FindIndex(cell => cell.x == x && cell.z == z) == -1) {
+                    eligibleCells.Add(cells[x, z]);
+                }
+            }
+        }
+        for (int i = 0; i < coinSpawns; i++) {
+            int indexOfSpawnCell = UnityEngine.Random.Range(0, eligibleCells.Count - 1);
+            MazeCell spawnCell = eligibleCells[indexOfSpawnCell];
+            CreateBitCoin(spawnCell);
+            eligibleCells.RemoveAt(indexOfSpawnCell);
+        }
+    }
+
+    public BitCoin CreateBitCoin(MazeCell spawnCell) {
+        BitCoin newBitCoin = Instantiate(bitCoinPrefab) as BitCoin;
+        newBitCoin.name = "BitCoin(" + spawnCell.coOrds.x + ", " + spawnCell.coOrds.z + ")";
+        newBitCoin.transform.parent = transform;
+        newBitCoin.transform.localPosition = new Vector3(
+            spawnCell.coOrds.x * scaleX,
+            scaleY / 2 + newBitCoin.transform.localScale.y + (coinYOffset),
+            spawnCell.coOrds.z * scaleZ);
+        return newBitCoin;
+    }
+    
+    public void CreateWayPoints() {
+        for (int x = 0; x < sizeX; x++) {
+            for (int z = 0; z < sizeZ; z++) {
+                if (itemCells.FindIndex(cell => cell.x == x && cell.z == z) == -1) {
                     CreateWayPoint(x, z);
                 }
             }
         }
-    }      
+    }
 	
 	public MazeCell CreateCell (int x, int z)
     {
