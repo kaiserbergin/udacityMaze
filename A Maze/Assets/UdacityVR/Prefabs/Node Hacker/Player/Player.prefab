@@ -613,6 +613,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1848553732605414, guid: a0d75d19d9088df4b925597682f555d4,
     type: 2}
+  audioManager: {fileID: 114764970857091490, guid: 292fd0f9f9ec2e44d8151cc1d4c54a73,
+    type: 2}
 --- !u!114 &114648425271184968
 MonoBehaviour:
   m_ObjectHideFlags: 1

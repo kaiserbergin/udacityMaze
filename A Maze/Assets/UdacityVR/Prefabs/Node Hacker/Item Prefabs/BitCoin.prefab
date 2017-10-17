@@ -141,7 +141,9 @@ MonoBehaviour:
   Name: Bit Coin
   ItemType: 3
   ItemIcon: {fileID: 0}
-  CollectCoinEffect: {fileID: 1000012050171414, guid: 251f98f5c04e5b346b37c68d537e30c6,
+  ItemCollectedAudioClip: {fileID: 8300000, guid: bc60b8ac1c02246fbb646be110722ceb,
+    type: 3}
+  ItemCollectedEffect: {fileID: 1000012050171414, guid: 251f98f5c04e5b346b37c68d537e30c6,
     type: 2}
   CoinCollider: {fileID: 1970275368656698}
   spinSpeedMultiplier: 70
@@ -162,7 +164,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114797388710723426}
-          m_MethodName: CollectCoin
+          m_MethodName: CollectItem
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -142,7 +142,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114353745370335874}
-          m_MethodName: OnKeyClicked
+          m_MethodName: CollectItem
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -169,9 +169,10 @@ MonoBehaviour:
   Name: Encrypted Escape Key
   ItemType: 0
   ItemIcon: {fileID: 0}
-  CollectKeyEffect: {fileID: 1000012050171414, guid: 251f98f5c04e5b346b37c68d537e30c6,
+  ItemCollectedAudioClip: {fileID: 8300000, guid: 90a0ba10a167345d9b816844fb65fd38,
+    type: 3}
+  ItemCollectedEffect: {fileID: 1000012050171414, guid: 251f98f5c04e5b346b37c68d537e30c6,
     type: 2}
-  Door: {fileID: 1212538085453316, guid: f9822e67385a4402d9bf680e50d19d58, type: 2}
   spinSpeedMultiplier: 50
   IsDecrypted: 0
 --- !u!114 &114701205679663036
@@ -188,6 +189,8 @@ MonoBehaviour:
   Name: 
   ItemType: 0
   ItemIcon: {fileID: 0}
+  ItemCollectedAudioClip: {fileID: 0}
+  ItemCollectedEffect: {fileID: 0}
   CollectKeyEffect: {fileID: 0}
   Door: {fileID: 0}
   IsDecrypted: 0

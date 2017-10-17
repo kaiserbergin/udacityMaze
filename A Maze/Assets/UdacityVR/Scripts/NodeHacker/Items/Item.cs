@@ -11,7 +11,11 @@ public class Item : MonoBehaviour {
     public string Name;
     public ItemTypes ItemType;
     public GameObject ItemIcon;
-    
+
+    public AudioClip ItemCollectedAudioClip;
+    public GameObject ItemCollectedEffect;
+
+
     public Item() {
         ID = Guid.NewGuid();
     }
@@ -24,5 +28,16 @@ public class Item : MonoBehaviour {
 
     public Guid GetID() {
         return ID;
+    }
+
+    public void CollectItem() {
+        GameManager.instance.inventory.AddItem(this);
+        ItemCollectedEffect.transform.position = gameObject.transform.position;
+        Instantiate(ItemCollectedEffect);
+        GameObject child = transform.GetChild(0).gameObject;
+        child.SetActive(false);
+        if (ItemCollectedAudioClip != null) {
+            AudioManager.instance.PlaySingle(ItemCollectedAudioClip);
+        }
     }
 }

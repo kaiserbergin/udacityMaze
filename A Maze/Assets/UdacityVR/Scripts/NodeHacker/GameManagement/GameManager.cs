@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour {
     public int coinsRequiredForHealthBonus;
     public EscapeDoor escapeDoor;
     public Difficulty MazeDifficulty = Difficulty.Easy;
+    public AudioClip DecryptedKeyClip;
 
     // Use this for initialization
     void Awake() {
-        Debug.Log("AWAKE");
         inventory = new Inventory();
         MazePlayer = new MazePlayer();
         if (instance == null) {
@@ -28,27 +28,32 @@ public class GameManager : MonoBehaviour {
     }
 
     void OnEnable() {
-        Debug.Log("OnEnable");
-        //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
     void OnDisable() {
-        //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
         mazeGenerator = (MazeGenerator)FindObjectOfType(typeof(MazeGenerator));
-        mazeGenerator.sizeX = (int)MazeDifficulty;
-        mazeGenerator.sizeZ = (int)MazeDifficulty;
-        mazeGenerator.InitializeMaze();
-        mazeGenerator.GenerateMaze();
+        if(mazeGenerator != null) {
+            mazeGenerator.sizeX = (int)MazeDifficulty;
+            mazeGenerator.sizeZ = (int)MazeDifficulty;
+            mazeGenerator.InitializeMaze();
+            mazeGenerator.GenerateMaze();
+        }        
+    }
+
+    public void OnEscapeDoorOpened() {
+
     }
 
 
     public void OnKeyDecrypted() {
-
+        if(DecryptedKeyClip != null) {
+            AudioManager.instance.PlaySingle(DecryptedKeyClip);
+        }
     }
 
     public void CompleteLevel() {

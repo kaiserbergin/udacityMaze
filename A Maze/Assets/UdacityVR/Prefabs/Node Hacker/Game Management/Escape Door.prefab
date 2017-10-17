@@ -123,6 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd7fe000de22404b9d1a73d58e355e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedAudioClip: {fileID: 8300000, guid: b6a0517e9a9d14b7b8fd6be65f68f1a5, type: 3}
+  unlockedAudioClip: {fileID: 8300000, guid: e5a423fc890c5445fb9c3b126422891b, type: 3}
+  animationTimeInSeconds: 1.5
+  openedScale: 6
 --- !u!114 &114903249943903536
 MonoBehaviour:
   m_ObjectHideFlags: 1

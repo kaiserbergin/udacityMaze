@@ -126,7 +126,9 @@ MonoBehaviour:
   Name: Decryption Fragment
   ItemType: 1
   ItemIcon: {fileID: 0}
-  CollectDecryptionEffect: {fileID: 1000012050171414, guid: 251f98f5c04e5b346b37c68d537e30c6,
+  ItemCollectedAudioClip: {fileID: 8300000, guid: bc60b8ac1c02246fbb646be110722ceb,
+    type: 3}
+  ItemCollectedEffect: {fileID: 1000012050171414, guid: 251f98f5c04e5b346b37c68d537e30c6,
     type: 2}
   spinSpeedMultiplier: 40
 --- !u!114 &114671980293258174
@@ -146,7 +148,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114200073705004724}
-          m_MethodName: OnClick
+          m_MethodName: CollectItem
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
