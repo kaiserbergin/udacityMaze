@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     private int level = 0;
-    public enum Difficulty { Easy = 10, Medium = 12, Hard = 14 };
+    public enum Difficulty { Easy = 10, Medium = 11, Hard = 13 };
 
     public Inventory inventory;
     public MazePlayer MazePlayer;
@@ -37,13 +37,15 @@ public class GameManager : MonoBehaviour {
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+        AudioManager.instance.PlayRandomizedBGMusic();
         mazeGenerator = (MazeGenerator)FindObjectOfType(typeof(MazeGenerator));
         if(mazeGenerator != null) {
             mazeGenerator.sizeX = (int)MazeDifficulty;
             mazeGenerator.sizeZ = (int)MazeDifficulty;
             mazeGenerator.InitializeMaze();
             mazeGenerator.GenerateMaze();
-        }        
+        }
+        
     }
 
     public void OnEscapeDoorOpened() {

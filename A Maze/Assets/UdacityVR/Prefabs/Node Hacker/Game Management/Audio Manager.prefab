@@ -215,3 +215,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   efxSource: {fileID: 82419891337419602}
   musicSource: {fileID: 82844945087635490}
+  bgMusic:
+  - {fileID: 8300000, guid: ef67b8191e96bd54faee7a6787c5f60e, type: 3}
+  - {fileID: 8300000, guid: b315e5a4c7c8f6344b4c8fbbc39b334f, type: 3}
+  - {fileID: 8300000, guid: bd12dcd95433391439a39ed7802dfc19, type: 3}
+  - {fileID: 8300000, guid: 99fef75d7cf68bf4bb29a2586fe82ac8, type: 3}
+  - {fileID: 8300000, guid: 6c4dfdad74a7a8f4c90daf655539549e, type: 3}
