@@ -23,6 +23,7 @@ public class EscapeDoor : MonoBehaviour {
             if (elapsedTime >= animationTimeInSeconds) {
                 opening = false;
                 gameObject.SetActive(false);
+                GameManager.instance.OnEscapeDoorOpened();
             }
             transform.localScale = new Vector3(transform.localScale.x + additiveScale, transform.localScale.y, transform.localScale.z + additiveScale);            
         }

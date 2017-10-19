@@ -6,7 +6,11 @@ public class WaypointNode : MonoBehaviour {
     public GameObject waypointCollider;
     public void TeleportPlayerToWaypointNode()
     {
-        Camera.main.transform.parent.transform.position = gameObject.transform.position;
+        Camera.main.transform.parent.transform.position = new Vector3(
+            gameObject.transform.position.x,
+            Camera.main.transform.parent.transform.position.y,
+            gameObject.transform.position.z
+        );
     }
     private void OnTriggerEnter(Collider other)
     {

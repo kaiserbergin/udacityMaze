@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     private int level = 0;
-    public enum Difficulty { Easy = 10, Medium = 12, Hard = 15, Insane = 25 };
+    public enum Difficulty { Easy = 10, Medium = 12, Hard = 14 };
 
     public Inventory inventory;
     public MazePlayer MazePlayer;
@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public EscapeDoor escapeDoor;
     public Difficulty MazeDifficulty = Difficulty.Easy;
     public AudioClip DecryptedKeyClip;
+    public LevelCompleteUI levelCompleteUI;
 
     // Use this for initialization
     void Awake() {
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnEscapeDoorOpened() {
-
+        levelCompleteUI.gameObject.SetActive(true);
     }
 
 

@@ -20,4 +20,10 @@ public class BitCoin : Item {
         }
 
     }
+
+    public void OnClick() {
+        Collider ownCollider = gameObject.GetComponent<Collider>();
+        ownCollider.enabled = false;
+        CollectItem();
+    }
 }

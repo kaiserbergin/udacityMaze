@@ -55,4 +55,6 @@ MonoBehaviour:
   decryptionFragmentsRequired: 0
   coinsRequiredForHealthBonus: 5
   escapeDoor: {fileID: 0}
-  MazeDifficulty: 25
+  MazeDifficulty: 8
+  DecryptedKeyClip: {fileID: 0}
+  levelCompleteUI: {fileID: 0}

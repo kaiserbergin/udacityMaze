@@ -107,6 +107,8 @@ MonoBehaviour:
     type: 2}
   bitCoinPrefab: {fileID: 114797388710723426, guid: 32e99d5f7e6b8874f840928f18289024,
     type: 2}
+  levelCompleteUIPrefab: {fileID: 114337156211177538, guid: 902bf3c89e306c246866896d14c97e88,
+    type: 2}
   idealRoomRatio: 0.25
   coinSpawnRate: 0
   coinYOffset: 0
